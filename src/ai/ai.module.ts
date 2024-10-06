@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { OpenAI } from 'openai';
 import * as DotEnv from 'dotenv';
 import { AIController } from './ai.controller';
-import { AiService } from './ai-service.service';
+import { AiService } from './ai.service';
 
 DotEnv.config();
 

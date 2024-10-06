@@ -7,9 +7,15 @@ import { AiConstants } from './ai.constants';
 export class AiService {
   constructor(private readonly _aiProvider: OpenAI) {}
 
-  async generateChatCompletion(climateinfo: object, crops: string[]): Promise<string> {
+  async generateChatCompletion(
+    climateinfo: object,
+    crops: string[],
+  ): Promise<string> {
     try {
-      let treatedprompt = AiConstants._prompt.replace('<ObjectPlaceholder>', JSON.stringify(climateinfo)).replace('<CropsPlaceholder>',crops.join(', '))
+      const treatedprompt = AiConstants._prompt
+        .replace('<ObjectPlaceholder>', JSON.stringify(climateinfo))
+        .replace('<CropsPlaceholder>', crops.join(', '));
+
       const response = await this._aiProvider.chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [
@@ -18,15 +24,17 @@ export class AiService {
             content: treatedprompt,
           },
         ],
-        max_tokens: 500,
+        max_tokens: 1000,
       });
 
       return response.choices[0].message.content;
     } catch (error) {
       console.error('Error generating response:', error);
 
-      throw new HttpException('Oops there was a failure on our provider', HttpStatus.FAILED_DEPENDENCY);
-
+      throw new HttpException(
+        'Oops there was a failure on our provider',
+        HttpStatus.FAILED_DEPENDENCY,
+      );
     }
   }
 }
