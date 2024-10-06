@@ -1,5 +1,5 @@
 export class AiConstants {
-    static readonly _prompt: string = `based on this given data about the climatology of said region:
+  static readonly _prompt: string = `based on this given data about the climatology of said region:
 <ObjectPlaceholder>
 make some sugestions and analysis, taking in consideration that it's focused on the production of <CropsPlaceholder>, a JSON Object and nothing more (no messages or other outside of the json snippet) that satisfies the following interfaces:
 
@@ -35,5 +35,5 @@ interface AgriculturalRecommendations {
   recommendations: Recommendations;
   tools: Tools;
 }
-`
+`;
 }
