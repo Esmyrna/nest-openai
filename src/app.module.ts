@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ClimatologyModule } from './climatology/climatology.module';
-import { AiService } from './ai/ai-service.service';
+import { AiModule } from './ai/ai.module';
 
-@Module({ imports: [ClimatologyModule, AiService] })
+@Module({ imports: [ClimatologyModule, AiModule] })
 export class AppModule {}
