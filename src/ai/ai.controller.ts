@@ -6,8 +6,8 @@ export class AIController {
   constructor(private readonly openAIService: AiService) {}
 
   @Post('generate')
-  async generatePrompt(@Body('prompt') prompt: string) {
-    const response = await this.openAIService.generateChatCompletion(prompt);
+  async generatePrompt(@Body() climateinfo: object, @Body() crops: string[]) {
+    const response = await this.openAIService.generateChatCompletion(climateinfo, crops);
     return { response };
   }
 }
