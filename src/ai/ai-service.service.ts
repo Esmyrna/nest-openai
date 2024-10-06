@@ -3,7 +3,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { OpenAI } from 'openai';
 
 @Injectable()
-export class AiServiceService {
+export class AiService {
   constructor(private readonly _aiProvider: OpenAI) {}
 
   async generateChatCompletion(prompt: string): Promise<string> {
